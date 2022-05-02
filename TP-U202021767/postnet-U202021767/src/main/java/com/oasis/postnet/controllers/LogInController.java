@@ -22,7 +22,7 @@ public class LogInController {
         this.converter = converter;
     }
 
-    @GetMapping("/username")
+    @GetMapping("/{username}")
     public ResponseEntity<LogInResponse> getPersonByDni(@PathVariable String dni){
         Person person = logInService.findPersonByDni(dni);
 
