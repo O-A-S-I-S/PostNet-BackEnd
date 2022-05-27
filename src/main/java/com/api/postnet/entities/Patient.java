@@ -1,7 +1,6 @@
 package com.api.postnet.entities;
 
 
-import com.sun.source.tree.UsesTree;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -53,5 +52,8 @@ public class Patient {
             inverseJoinColumns = @JoinColumn(name = "allergy_type_id")
     )
     Set<AllergyType> allergyTypes;
+
+    @ManyToMany(mappedBy = "patients")
+    Set<Medic> medics;
 
 }
