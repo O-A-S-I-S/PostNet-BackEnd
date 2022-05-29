@@ -7,11 +7,16 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Prescription")
-@PrimaryKeyJoinColumn(name="id")
-public class Prescription extends Appoiment {
-    @Column(name="description",nullable = false,length = 100)
-    private String description;
+@Table(name="prescriptions")
+public class Prescription{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
+    private Appoiment appoiment;
 
     @ManyToMany
     @JoinTable(
@@ -21,4 +26,6 @@ public class Prescription extends Appoiment {
     )
     Set<Medicine> medicines;
 
+    @Column(nullable = false, length = 100)
+    private String description;
 }
