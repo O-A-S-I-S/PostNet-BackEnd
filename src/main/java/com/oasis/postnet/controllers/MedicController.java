@@ -43,4 +43,25 @@ public class MedicController {
         return new ResponseEntity<>(converter.convertMedicToDto(medicService.getMedicsBySpecialty(specialty)), HttpStatus.OK);
     }
 
+    //URI are stackable
+    @GetMapping("/{dni}")
+    //ResponseEntity -> conversion to JSON and HttpStatus
+    //PathVariable captures the input URI and stores it in a variable
+    public ResponseEntity<MedicResponse> findMedicById(@PathVariable String dni){
+
+        Medic medic = medicService.getMedicByDni(dni);
+
+        return new ResponseEntity(converter.convertMedicToDto(medic), HttpStatus.OK);
+    }
+
+    @GetMapping("/log_in")
+    public ResponseEntity<LogInResponse> getMedicByDniAndPassword(@RequestBody LogInRequest logInRequest){
+        return new ResponseEntity(converter.convertMedicLogInToDto(medicService.findMedicByDniAndPassword(logInRequest.getDni(), logInRequest.getPassword())), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity createMedic(@Valid @RequestBody MedicRequest medicRequest){
+
+        return new ResponseEntity(converter.convertMedicToDto(medicService.createMedic(medicRequest)), HttpStatus.CREATED);
+    }
 }

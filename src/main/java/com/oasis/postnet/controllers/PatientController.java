@@ -33,4 +33,18 @@ public class PatientController {
 
         return new ResponseEntity<>(converter.convertPatientToDto(patientService.getPatientsByBloodType(bloodType)), HttpStatus.OK);
     }
+
+    @GetMapping("/log_in")
+    public ResponseEntity<LogInResponse> getPatientByDniAndPassword(@Valid @RequestBody LogInRequest logInRequest) {
+        //Medic medic = logInService.;
+
+        return new ResponseEntity(converter.convertPatientToLogInDto(patientService.findPatientByDniAndPassword(logInRequest.getDni(), logInRequest.getPassword())), HttpStatus.OK);
+    }
+
+
+    @PostMapping()
+    public ResponseEntity<PatientResponse> createPatient(@Valid @RequestBody PatientRequest patientRequest){
+        Patient patient = patientService.createPatient(patientRequest);
+        return new ResponseEntity<>(converter.convertPatientToDto(patient), HttpStatus.CREATED);
+    }
 }
