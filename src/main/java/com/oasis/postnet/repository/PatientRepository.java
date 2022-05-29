@@ -12,4 +12,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query(value = "select * from patients p where p.blood_type = ?", nativeQuery = true)
     List<Patient> getPatientsByBloodType(String bloodType);
+
+    Patient findPatientByDni(String dni);
+
+    Patient findPatientByDniAndPassword(String dni, String password);
 }
