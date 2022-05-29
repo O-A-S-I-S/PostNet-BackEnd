@@ -35,7 +35,7 @@ public class Medic {
     @Column(name ="birth_date",nullable = false)
     private Date birthDate;
     @Column(name ="password",nullable = false,length = 30)
-    private Date password;
+    private String password;
 
     @OneToOne
     @JoinColumn(name="speciality_id",nullable = false)
