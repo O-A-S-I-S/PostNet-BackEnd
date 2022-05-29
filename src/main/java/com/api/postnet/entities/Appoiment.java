@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
-@Table(name="Appoiment")
+@Table(name="appoiments")
 public class Appoiment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +39,5 @@ public class Appoiment {
     @JoinColumn(name = "patient_id",nullable = false)
     private Patient patient;
 
-
-
-
-
 }
+
