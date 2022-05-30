@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "5d6f75aa-a3fd-4b41-99e1-ca482cf50307",
+		"name": "PostNet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20769476"
+	},
+	"item": [
+		{
+			"name": "List all medics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/medics",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"medics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List medics by specialty",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/medics/specialty/Traumatology",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"medics",
+						"specialty",
+						"Traumatology"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get medic by DNI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/medics/56789942",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"medics",
+						"56789942"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Medic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dni\":\"74532242\",\n    \"surName\":\"Luis Alberto\",\n    \"lastName\":\"Díaz Pérez\",\n    \"email\":\"luisdiaz23@gmail.com\",\n    \"telephone\":\"\",\n    \"cellphone\":\"992333223\",\n    \"birthDate\":\"2002-06-23\",\n    \"password\":\"luis2002diaz\",\n    \"specialty\":\"Traumatology\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/medics",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"medics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/patients",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List patients by Blood type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/patients/blood_type/ABplus",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"patients",
+						"blood_type",
+						"ABplus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patient Log In",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"dni\": \"75689431\",\n        \"password\": \"23443lisa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/patients/log_in",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"patients",
+						"log_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patient Sign In",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dni\": \"75689431\",\n    \"surName\": \"Lisa\",\n    \"lastName\": \"Lopez Tello\",\n    \"email\": \"lisalt@outlook.com\",\n    \"password\": \"23443lisa\",\n    \"cellphone\": \"998832428\",\n    \"birthDate\": \"19-08-1997\",\n    \"bloodType\": \"ABplus\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/patients",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "http://localhost:8080/api/postnet",
+			"type": "string"
+		}
+	]
+}

@@ -25,6 +25,7 @@ public class PatientRequest {
     private String email;
     private String telephone;
     private String cellphone;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate birthDate;
     @NotBlank(message = "Ingrese su contraseña")
