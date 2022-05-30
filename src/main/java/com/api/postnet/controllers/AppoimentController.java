@@ -22,6 +22,13 @@ public class AppoimentController {
         this.converter=converter;
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AppoimentResponse> findAppoimentById(@PathVariable Long id){
+        Appoiment appoiment=appoimentService.getAppoimentById(id);
+
+        return new ResponseEntity(converter.convertEntityToDto(appoiment), HttpStatus.OK);
+    }
     @PostMapping
     public ResponseEntity<AppoimentResponse> createAppoiment(@RequestBody AppoimentRequest request){
         Appoiment appoiment=appoimentService.createAppoiment(request);
