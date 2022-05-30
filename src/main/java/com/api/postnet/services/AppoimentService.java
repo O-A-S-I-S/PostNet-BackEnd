@@ -25,6 +25,11 @@ public class AppoimentService {
     }
 
     @Transactional
+    public Appoiment getAppoimentById(Long appoimentid){
+        return appoimentRepository.findAppoimentByAppoimentId(appoimentid);
+    }
+
+    @Transactional
     public Appoiment createAppoiment(AppoimentRequest appoimentRequest)
     {
         Appoiment appoimentNew=initAppoiment(appoimentRequest);
