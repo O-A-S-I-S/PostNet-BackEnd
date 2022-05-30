@@ -1,9 +1,6 @@
 package com.api.postnet.controllers;
 
-import com.api.postnet.dto.LogInRequest;
-import com.api.postnet.dto.LogInResponse;
-import com.api.postnet.dto.PatientRequest;
-import com.api.postnet.dto.PatientResponse;
+import com.api.postnet.dto.*;
 import com.api.postnet.entities.Patient;
 import com.api.postnet.services.PatientService;
 import com.api.postnet.util.EntityDtoConverter;
@@ -49,9 +46,15 @@ public class PatientController {
         return new ResponseEntity<>(converter.convertPatientToDto(patient), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{dni}")
+    @DeleteMapping("/delete/{dni}")
     public ResponseEntity<PatientResponse> deletePatient(@PathVariable String dni){
 
         return new ResponseEntity<>(HttpStatus.GONE);
+    }
+    @GetMapping("/{dni}")
+    public ResponseEntity<MedicResponse> findPatientByDni(@PathVariable String dni){
+        Patient patient=patientService.getPatientByDni(dni);
+
+        return new ResponseEntity(converter.convertPatientToDto(patient), HttpStatus.OK);
     }
 }
