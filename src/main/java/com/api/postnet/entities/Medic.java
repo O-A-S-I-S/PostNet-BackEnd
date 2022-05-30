@@ -38,8 +38,8 @@ public class Medic {
     private String password;
 
     @OneToOne
-    @JoinColumn(name="speciality_id",nullable = false)
-    private Speciality speciality;
+    @JoinColumn(name="specialty_id",nullable = false)
+    private Specialty specialty;
 
     @ManyToMany
     @JoinTable(

@@ -19,7 +19,7 @@ public class Patient {
     @Column(name = "surname", nullable = false, length = 20)
     private String surname;
     @Column(name = "lastname", nullable = false, length = 20)
-    private String lastname;
+    private String lastName;
     @Column(name = "email", nullable = false, length = 30)
     private String email;
     @Column(name = "telephone", nullable = false, length = 7)
@@ -31,11 +31,6 @@ public class Patient {
     private Date birth_date;
     @Column(name = "password", nullable = false, length = 30)
     private String password;
-
-    @ManyToOne
-    @JoinColumn(name = "blood_type_id")
-    private BloodType bloodType;
-    //private Long bloodTypeId;
 
     @ManyToMany
     @JoinTable(
