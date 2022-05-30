@@ -1,10 +1,8 @@
-package com.oasis.postnet.services;
+package com.api.postnet.services;
 
-import com.oasis.postnet.dto.MedicRequest;
-import com.oasis.postnet.dto.PatientRequest;
-import com.oasis.postnet.entities.Medic;
-import com.oasis.postnet.entities.Patient;
-import com.oasis.postnet.repository.MedicRepository;
+import com.api.postnet.dto.MedicRequest;
+import com.api.postnet.entities.Medic;
+import com.api.postnet.repository.MedicRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,13 +48,12 @@ public class MedicService {
     private Medic initMedic(MedicRequest medicRequest) {
         Medic medic = new Medic();
         medic.setDni(medicRequest.getDni());
-        medic.setSurName(medicRequest.getSurName());
+        medic.setSurname(medicRequest.getSurName());
         medic.setLastName(medicRequest.getLastName());
         medic.setEmail(medicRequest.getEmail());
         medic.setTelephone(medicRequest.getTelephone());
         medic.setCellphone(medicRequest.getCellphone());
         medic.setBirthDate(medicRequest.getBirthDate());
-        medic.setSpecialty(medicRequest.getSpecialty());
 
         return medic;
     }

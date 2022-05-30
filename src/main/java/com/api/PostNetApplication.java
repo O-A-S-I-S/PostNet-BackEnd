@@ -1,13 +1,13 @@
-package com.oasis;
+package com.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PostnetApplication {
+public class PostNetApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PostnetApplication.class, args);
+        SpringApplication.run(PostNetApplication.class, args);
     }
 
 }

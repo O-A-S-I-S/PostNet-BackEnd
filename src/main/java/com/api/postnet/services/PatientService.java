@@ -1,9 +1,8 @@
-package com.oasis.postnet.services;
+package com.api.postnet.services;
 
-import com.oasis.postnet.dto.PatientRequest;
-import com.oasis.postnet.dto.PatientResponse;
-import com.oasis.postnet.entities.Patient;
-import com.oasis.postnet.repository.PatientRepository;
+import com.api.postnet.dto.PatientRequest;
+import com.api.postnet.entities.Patient;
+import com.api.postnet.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +47,7 @@ public class PatientService {
     private Patient initPatient(PatientRequest patientRequest) {
         Patient patient = new Patient();
         patient.setDni(patientRequest.getDni());
-        patient.setSurName(patientRequest.getSurName());
+        patient.setSurname(patientRequest.getSurName());
         patient.setLastName(patientRequest.getLastName());
         patient.setEmail(patientRequest.getEmail());
         patient.setTelephone(patientRequest.getTelephone());

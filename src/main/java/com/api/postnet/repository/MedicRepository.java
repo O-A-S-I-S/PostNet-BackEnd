@@ -1,6 +1,6 @@
-package com.oasis.postnet.repository;
+package com.api.postnet.repository;
 
-import com.oasis.postnet.entities.Medic;
+import com.api.postnet.entities.Medic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

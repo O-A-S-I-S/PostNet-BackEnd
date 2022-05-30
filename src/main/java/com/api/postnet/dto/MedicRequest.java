@@ -1,4 +1,4 @@
-package com.oasis.postnet.dto;
+package com.api.postnet.dto;
 
 import com.oasis.postnet.util.Specialty;
 import lombok.AllArgsConstructor;
@@ -25,9 +25,8 @@ public class MedicRequest {
     private String email;
     private String telephone;
     private String cellphone;
-    @NotBlank
     private Date birthDate;
     @NotBlank
     private String password;
-    private Specialty specialty;
+    private String specialty;
 }

@@ -1,12 +1,12 @@
-package com.oasis.postnet.controllers;
+package com.api.postnet.controllers;
 
-import com.oasis.postnet.dto.LogInRequest;
-import com.oasis.postnet.dto.LogInResponse;
-import com.oasis.postnet.dto.MedicRequest;
-import com.oasis.postnet.dto.MedicResponse;
-import com.oasis.postnet.entities.Medic;
-import com.oasis.postnet.services.MedicService;
-import com.oasis.postnet.util.EntityDtoConverter;
+import com.api.postnet.dto.LogInRequest;
+import com.api.postnet.dto.LogInResponse;
+import com.api.postnet.dto.MedicRequest;
+import com.api.postnet.dto.MedicResponse;
+import com.api.postnet.entities.Medic;
+import com.api.postnet.services.MedicService;
+import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

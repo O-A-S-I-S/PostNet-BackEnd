@@ -1,4 +1,4 @@
-package com.oasis.postnet.config;
+package com.api.postnet.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
