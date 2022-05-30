@@ -3,6 +3,7 @@ package com.api.postnet.services;
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.repository.MedicRepository;
+import com.api.postnet.repository.SpecialityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +14,10 @@ import java.util.List;
 public class MedicService {
 
     private MedicRepository medicRepository;
-
-    public MedicService(MedicRepository medicRepository) {
+    private SpecialityRepository specialityRepository;
+    public MedicService(MedicRepository medicRepository,SpecialityRepository specialityRepository) {
         this.medicRepository = medicRepository;
+        this.specialityRepository=specialityRepository;
     }
 
     @Transactional(readOnly = true)
@@ -54,7 +56,8 @@ public class MedicService {
         medic.setTelephone(medicRequest.getTelephone());
         medic.setCellphone(medicRequest.getCellphone());
         medic.setBirthDate(medicRequest.getBirthDate());
-
+        medic.setSpecialty(this.specialityRepository.findSpecialityByName(medicRequest.getSpeciality()));
+        medic.setPassword(medicRequest.getPassword());
         return medic;
     }
 }

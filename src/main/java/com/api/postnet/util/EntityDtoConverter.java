@@ -1,10 +1,10 @@
 package com.api.postnet.util;
 
-import com.api.postnet.dto.LogInResponse;
-import com.api.postnet.dto.MedicResponse;
-import com.api.postnet.dto.PatientResponse;
+import com.api.postnet.dto.*;
+import com.api.postnet.entities.Appointment;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.entities.Patient;
+import com.api.postnet.entities.Speciality;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -47,6 +47,15 @@ public class EntityDtoConverter {
 
     public LogInResponse convertPatientToLogInDto(Patient patient){
         return modelMapper.map(patient, LogInResponse.class);
+    }
+    public AppointmentResponse convertEntityToDto(Appointment appointment){
+        return modelMapper.map(appointment, AppointmentResponse.class);
+    }
+    public SpecialityResponse convertEntityToDto(Speciality speciality){
+        return modelMapper.map(speciality, SpecialityResponse.class);
+    }
+    public List<AppointmentResponse> convertEntityToDto(List<Appointment>appointments){
+        return appointments.stream().map(appointment->convertEntityToDto(appointment)).collect(Collectors.toList());
     }
 
 }

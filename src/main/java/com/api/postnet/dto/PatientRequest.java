@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class PatientRequest {
     private String telephone;
     private String cellphone;
     @JsonFormat(pattern="dd-MM-yyyy")
-    private LocalDate birthDate;
+    private Date birthDate;
     @NotBlank(message = "Ingrese su contraseña")
     private String password;
     private BloodType bloodType;
