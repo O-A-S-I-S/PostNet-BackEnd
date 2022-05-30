@@ -10,10 +10,10 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
     @Query("select m from Medic m")
     List<Medic> getAllMedics();
 
-    @Query(value = "select * from medics m where m.specialty = ?", nativeQuery = true)
+    @Query(value = "select * from medics m join specialties s on m.specialty_id = s.id where s.name = ?", nativeQuery = true)
     List<Medic> getMedicsBySpecialty(String specialty);
 
-    Medic findMedicBySurNameAndLastName(String surName, String lastName);
+    Medic findMedicBySurnameAndLastName(String surName, String lastName);
 
     //JPQL
     @Query("select m from Medic m where m.dni= ?1")

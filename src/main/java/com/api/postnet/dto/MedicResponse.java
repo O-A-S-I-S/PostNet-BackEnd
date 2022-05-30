@@ -1,6 +1,5 @@
 package com.api.postnet.dto;
 
-import com.oasis.postnet.util.Specialty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

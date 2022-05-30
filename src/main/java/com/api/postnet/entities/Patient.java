@@ -1,6 +1,7 @@
 package com.api.postnet.entities;
 
 
+import com.api.postnet.util.BloodType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,9 +29,11 @@ public class Patient {
     private String cellphone;
     @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
-    private Date birth_date;
+    private Date birthDate;
     @Column(name = "password", nullable = false, length = 30)
     private String password;
+    @Column(name = "blood_type", nullable = false)
+    private BloodType bloodType;
 
     @ManyToMany
     @JoinTable(
