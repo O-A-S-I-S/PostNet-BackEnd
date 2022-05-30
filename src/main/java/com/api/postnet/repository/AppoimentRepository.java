@@ -1,12 +1,12 @@
 package com.api.postnet.repository;
 
-import com.api.postnet.entities.Appoiment;
+import com.api.postnet.entities.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface AppoimentRepository extends JpaRepository<Appoiment,Long> {
+public interface AppoimentRepository extends JpaRepository<Appointment,Long> {
 
-    @Query("SELECT o From Appoiment o WHERE o.id=:appoimentId")
-    Appoiment findAppoimentByAppoimentId(@Param("appoimentId") Long appoimentId);
+    @Query("SELECT o From Appointment o WHERE o.id=:appoimentId")
+    Appointment findAppoimentByAppoimentId(@Param("appoimentId") Long appoimentId);
 }

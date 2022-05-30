@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PrescriptionServiceConfig {
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapperPrescription(){
         return new ModelMapper();
     }
 }

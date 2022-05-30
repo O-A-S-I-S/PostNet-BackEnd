@@ -2,7 +2,7 @@ package com.api.postnet.controllers;
 
 import com.api.postnet.dto.AppoimentRequest;
 import com.api.postnet.dto.AppoimentResponse;
-import com.api.postnet.entities.Appoiment;
+import com.api.postnet.entities.Appointment;
 import com.api.postnet.services.AppoimentService;
 import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.http.HttpStatus;
@@ -22,13 +22,13 @@ public class AppoimentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AppoimentResponse> findAppoimentById(@PathVariable Long id){
-        Appoiment appoiment=appoimentService.getAppoimentById(id);
+        Appointment appoiment=appoimentService.getAppoimentById(id);
 
         return new ResponseEntity(converter.convertEntityToDto(appoiment), HttpStatus.OK);
     }
     @PostMapping
     public ResponseEntity<AppoimentResponse> createAppoiment(@RequestBody AppoimentRequest request){
-        Appoiment appoiment=appoimentService.createAppoiment(request);
+        Appointment appoiment=appoimentService.createAppoiment(request);
         return new ResponseEntity<>(converter.convertEntityToDto(appoiment),HttpStatus.CREATED);
     }
 

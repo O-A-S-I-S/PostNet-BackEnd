@@ -4,7 +4,7 @@ package com.api.postnet.util;
 import com.api.postnet.dto.AppoimentResponse;
 import com.api.postnet.dto.MedicResponse;
 import com.api.postnet.dto.PatientResponse;
-import com.api.postnet.entities.Appoiment;
+import com.api.postnet.entities.Appointment;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.entities.Patient;
 import com.api.postnet.entities.Payment_method;
@@ -25,10 +25,10 @@ public class EntityDtoConverter {
         this.modelMapper=modelMapper;
     }
 
-    public AppoimentResponse convertEntityToDto(Appoiment appoiment){
+    public AppoimentResponse convertEntityToDto(Appointment appoiment){
         return modelMapper.map(appoiment,AppoimentResponse.class);
     }
-    public List<AppoimentResponse> convertEntityToDto(List<Appoiment>appoiments){
+    public List<AppoimentResponse> convertEntityToDto(List<Appointment>appoiments){
         return appoiments.stream().map(appoiment->convertEntityToDto(appoiment)).collect(Collectors.toList());
     }
 
@@ -40,12 +40,10 @@ public class EntityDtoConverter {
     }
     public Payment_method convertEntityToDto(Payment_method payment_method){
         return  modelMapper.map(payment_method,Payment_method.class);
-    }
-}
 
+    }
     public PrescriptionResponse convertEntityToDto(Prescription prescription){
         return modelMapper.map(prescription,PrescriptionResponse.class);
     }
-
-
 }
+

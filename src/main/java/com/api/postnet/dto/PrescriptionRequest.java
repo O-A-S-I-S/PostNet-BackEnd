@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class PrescriptionRequest {
     @NotNull
-    private Appointment appointment_id;
+    private Long appointment_id;
     @NotNull
     private String description;
 

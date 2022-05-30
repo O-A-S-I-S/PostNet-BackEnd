@@ -1,7 +1,7 @@
 package com.api.postnet.services;
 
 import com.api.postnet.dto.AppoimentRequest;
-import com.api.postnet.entities.Appoiment;
+import com.api.postnet.entities.Appointment;
 import com.api.postnet.repository.AppoimentRepository;
 import com.api.postnet.repository.MedicRepository;
 import com.api.postnet.repository.PatientRepository;
@@ -25,20 +25,20 @@ public class AppoimentService {
     }
 
     @Transactional
-    public Appoiment getAppoimentById(Long appoimentid){
+    public Appointment getAppoimentById(Long appoimentid){
         return appoimentRepository.findAppoimentByAppoimentId(appoimentid);
     }
 
     @Transactional
-    public Appoiment createAppoiment(AppoimentRequest appoimentRequest)
+    public Appointment createAppoiment(AppoimentRequest appoimentRequest)
     {
-        Appoiment appoimentNew=initAppoiment(appoimentRequest);
+        Appointment appoimentNew=initAppoiment(appoimentRequest);
         return appoimentRepository.save(appoimentNew);
     }
 
 
-    private Appoiment initAppoiment(AppoimentRequest appoimentRequest){
-        Appoiment appoimentObj=new Appoiment();
+    private Appointment initAppoiment(AppoimentRequest appoimentRequest){
+        Appointment appoimentObj=new Appointment();
 
         appoimentObj.setMedics(this.medicRepository.findMedicByDni(appoimentRequest.getMedic_dni()));
         appoimentObj.setPatient(this.patientRepository.findPatientByDni(appoimentRequest.getPatient_dni()));

@@ -7,6 +7,6 @@ import java.util.Date;
 @Data
 public class PrescriptionResponse {
     private Long id;
-    private Appointment appointment_id;
+    private AppoimentResponse appointment;
     private String description;
 }
