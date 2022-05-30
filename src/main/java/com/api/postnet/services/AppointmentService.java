@@ -31,8 +31,15 @@ public class AppointmentService {
         Appointment appointmentNew=initAppoiment(appointmentRequest);
         return appointmentRepository.save(appointmentNew);
     }
-
-
+    @Transactional
+    public Appointment getAppointmentById(Long appointmentid){
+        return appointmentRepository.findAppoimentByAppointmentId(appointmentid);
+    }
+    @Transactional
+    public void deleteAppointment(Long id){
+        Appointment appointmentToDelete=getAppointmentById(id);
+        appointmentRepository.delete(appointmentToDelete);
+    }
 
     private Appointment initAppoiment(AppointmentRequest appointmentRequest){
         Appointment appointmentObj=new Appointment();

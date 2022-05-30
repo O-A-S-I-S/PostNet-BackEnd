@@ -20,6 +20,17 @@ public class AppointmentController {
         this.appoimentService=appoimentService;
         this.converter=converter;
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<AppointmentResponse> findAppointmentById(@PathVariable Long id){
+        Appointment appointment=appoimentService.getAppointmentById(id);
+
+        return new ResponseEntity(converter.convertEntityToDto(appointment), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteAppointmentById(@PathVariable Long id){
+        appoimentService.deleteAppointment(id);
+    }
 
     @PostMapping
     public ResponseEntity<AppointmentResponse> createAppoiment(@RequestBody AppointmentRequest request){
