@@ -35,10 +35,15 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name="medic_id",nullable = false)
-    private Medic medics;
+    private Medic medic;
+
     @ManyToOne
     @JoinColumn(name = "patient_id",nullable = false)
     private Patient patient;
+
+    @OneToOne
+    @JoinColumn(name = "prescription_id", referencedColumnName = "id")
+    private Prescription prescription;
 
 }
 

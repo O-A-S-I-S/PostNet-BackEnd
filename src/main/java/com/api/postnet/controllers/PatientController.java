@@ -38,7 +38,6 @@ public class PatientController {
 
     @GetMapping("/log_in")
     public ResponseEntity<LogInResponse> getPatientByDniAndPassword(@Valid @RequestBody LogInRequest logInRequest) {
-        //Medic medic = logInService.;
 
         return new ResponseEntity(converter.convertPatientToLogInDto(patientService.findPatientByDniAndPassword(logInRequest.getDni(), logInRequest.getPassword())), HttpStatus.OK);
     }
@@ -48,5 +47,11 @@ public class PatientController {
     public ResponseEntity<PatientResponse> createPatient(@Valid @RequestBody PatientRequest patientRequest){
         Patient patient = patientService.createPatient(patientRequest);
         return new ResponseEntity<>(converter.convertPatientToDto(patient), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{dni}")
+    public ResponseEntity<PatientResponse> deletePatient(@PathVariable String dni){
+
+        return new ResponseEntity<>(HttpStatus.GONE);
     }
 }

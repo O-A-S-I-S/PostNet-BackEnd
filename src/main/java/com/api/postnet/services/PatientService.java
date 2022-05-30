@@ -2,6 +2,7 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.PatientRequest;
 import com.api.postnet.entities.Patient;
+import com.api.postnet.exceptions.AccessBadRequestException;
 import com.api.postnet.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,13 +36,21 @@ public class PatientService {
 
     @Transactional(readOnly = true)
     public Patient findPatientByDniAndPassword(String dni, String password) {
-        return patientRepository.findPatientByDniAndPassword(dni, password);
+        if(patientRepository.findPatientsByDniAndPassword(dni, password).isEmpty())
+            throw new AccessBadRequestException("Credenciales incorrectas");
+        else{
+            return patientRepository.findPatientByDniAndPassword(dni, password);
+        }
     }
 
     @Transactional
     public Patient createPatient(PatientRequest patientRequest) {
-        Patient patientNew = initPatient(patientRequest);
-        return patientRepository.save(patientNew);
+        if(!patientRepository.findPatientsByDni(patientRequest.getDni()).isEmpty())
+            throw new AccessBadRequestException("Ya existe un usuario con el mismo DNI");
+        else{
+            Patient patientNew = initPatient(patientRequest);
+            return patientRepository.save(patientNew);
+        }
     }
 
     private Patient initPatient(PatientRequest patientRequest) {
@@ -53,8 +62,18 @@ public class PatientService {
         patient.setTelephone(patientRequest.getTelephone());
         patient.setCellphone(patientRequest.getCellphone());
         patient.setBirthDate(patientRequest.getBirthDate());
+        patient.setPassword(patientRequest.getPassword());
         patient.setBloodType(patientRequest.getBloodType());
 
         return patient;
+    }
+
+    @Transactional
+    public void deletePatient(String dni){
+        try{
+            patientRepository.deleteById(patientRepository.findPatientByDni(dni).getId());
+        } catch (Exception e){
+            throw new AccessBadRequestException("DNI incorrecto o el paciente no existe");
+        }
     }
 }
