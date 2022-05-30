@@ -2,6 +2,7 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
+import com.api.postnet.exceptions.SearchBadRequestException;
 import com.api.postnet.repository.MedicRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,9 @@ public class MedicService {
 
     @Transactional(readOnly = true)
     public List<Medic> getMedicsBySpecialty(String specialty) {
-        return medicRepository.getMedicsBySpecialty(specialty);
+        List<Medic> medics = medicRepository.getMedicsBySpecialty(specialty);
+        if(medics.isEmpty()) throw new SearchBadRequestException("La especialidad ingresada no existe");
+        else return medics;
     }
 
     //incorporate rollback in case of failure

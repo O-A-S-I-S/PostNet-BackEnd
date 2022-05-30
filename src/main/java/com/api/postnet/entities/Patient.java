@@ -61,5 +61,4 @@ public class Patient {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patients")
     Set<Medic> medics;
-
 }
