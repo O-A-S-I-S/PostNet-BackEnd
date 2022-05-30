@@ -4,9 +4,13 @@ import com.api.postnet.dto.PrescriptionRequest;
 import com.api.postnet.dto.PrescriptionResponse;
 import com.api.postnet.entities.Prescription;
 import com.api.postnet.services.PrescriptionService;
+import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/prescriptions")
