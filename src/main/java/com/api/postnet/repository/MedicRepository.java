@@ -4,6 +4,7 @@ import com.api.postnet.entities.Medic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+
 import java.util.List;
 
 public interface MedicRepository extends JpaRepository<Medic, Long> {
@@ -20,4 +21,5 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
     Medic findMedicByDni(String medicId);
 
     Medic findMedicByDniAndPassword(String dni, String password);
+
 }

@@ -1,5 +1,6 @@
 package com.api.postnet.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class MedicResponse {
     private Date birthDate;
     private String password;
     private String speciality;
+
 
 }

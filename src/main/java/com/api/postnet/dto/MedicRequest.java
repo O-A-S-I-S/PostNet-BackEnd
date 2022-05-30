@@ -1,6 +1,5 @@
 package com.api.postnet.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +26,5 @@ public class MedicRequest {
     private String password;
     @NotBlank
     private String speciality;
+
 }

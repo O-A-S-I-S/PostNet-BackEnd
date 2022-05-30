@@ -1,5 +1,6 @@
 package com.api.postnet.dto;
 
+
 import com.api.postnet.util.BloodType;
 import lombok.AllArgsConstructor;
 import lombok.Data;

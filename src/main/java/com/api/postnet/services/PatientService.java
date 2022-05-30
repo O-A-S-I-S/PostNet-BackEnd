@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
 public class PatientService {
     private PatientRepository patientRepository;
+
 
     public PatientService(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -76,5 +78,6 @@ public class PatientService {
         } catch (Exception e){
             throw new AccessBadRequestException("DNI incorrecto o el paciente no existe");
         }
+
     }
 }

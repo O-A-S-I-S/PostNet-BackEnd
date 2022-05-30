@@ -4,6 +4,7 @@ import com.api.postnet.entities.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+
 import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
@@ -20,4 +21,5 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     Patient findPatientByDniAndPassword(String dni, String password);
 
     List<Patient> findPatientsByDniAndPassword(String dni, String password);
+
 }

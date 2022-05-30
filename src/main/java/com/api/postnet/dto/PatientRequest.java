@@ -1,5 +1,6 @@
 package com.api.postnet.dto;
 
+
 import com.api.postnet.util.BloodType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -32,4 +33,5 @@ public class PatientRequest {
     private String password;
     @NotBlank(message = "Tipos de sangre válidos: Oplus,Ominus,Aplus,Aminus,Bplus,Bminus,ABplus,ABminus")
     private String bloodType;
+
 }
