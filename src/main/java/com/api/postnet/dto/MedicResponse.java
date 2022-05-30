@@ -3,6 +3,15 @@ package com.api.postnet.dto;
 public class MedicResponse {
     private String surname;
     private String lastName;
+<<<<<<< HEAD
+=======
+    private String telephone;
+    private String cellphone;
+    private String email;
+    private Date birthDate;
+    private String password;
+    private String specialty;
+>>>>>>> parent of 3c81fa9 (fixed errors with patient sign in and blood type)
 
     public String getSurname() {
         return surname;

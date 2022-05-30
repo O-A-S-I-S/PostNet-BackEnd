@@ -20,6 +20,26 @@ public class MedicController {
         this.medicService=medicService;
         this.converter=converter;
     }
+<<<<<<< HEAD
+=======
+
+    //When reading Get verb -> execute
+    @GetMapping
+    //ResponseEntity -> transformation from Java list to JSON and include HTTPStatus
+    public ResponseEntity<List<MedicResponse>> getAllMedics(){
+        List<MedicResponse> medics = converter.convertMedicToDto(medicService.getAllMedics());
+
+        return new ResponseEntity<>(medics, HttpStatus.OK);
+    }
+
+    @GetMapping("/specialty/{specialty}")
+    public ResponseEntity<List<MedicResponse>> findMedicsBySpecialty(@PathVariable String specialty){
+
+        return new ResponseEntity<>(converter.convertMedicToDto(medicService.getMedicsBySpecialty(specialty)), HttpStatus.OK);
+    }
+
+    //URI are stackable
+>>>>>>> parent of 3c81fa9 (fixed errors with patient sign in and blood type)
     @GetMapping("/{dni}")
     public ResponseEntity<MedicResponse> findMedicByDni(@PathVariable String dni){
         Medic medic=medicService.getMedicByDni(dni);
