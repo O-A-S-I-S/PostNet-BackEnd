@@ -16,7 +16,7 @@ public class Prescription{
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
-    private Appoiment appoiment;
+    private Appointment appointment;
 
     @ManyToMany
     @JoinTable(
