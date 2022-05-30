@@ -25,8 +25,8 @@ public class MedicService {
     }
 
     @Transactional(readOnly = true)
-    public List<Medic> getMedicsBySpecialty(String specialty) {
-        List<Medic> medics = medicRepository.getMedicsBySpecialty(specialty);
+    public List<Medic> getMedicsByspeciality(String speciality) {
+        List<Medic> medics = medicRepository.getMedicsByspeciality(speciality);
         if(medics.isEmpty()) throw new SearchBadRequestException("La especialidad ingresada no existe");
         else return medics;
     }

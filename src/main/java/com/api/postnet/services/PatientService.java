@@ -4,6 +4,7 @@ import com.api.postnet.dto.PatientRequest;
 import com.api.postnet.entities.Patient;
 import com.api.postnet.exceptions.AccessBadRequestException;
 import com.api.postnet.repository.PatientRepository;
+import com.api.postnet.util.BloodType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,7 +64,7 @@ public class PatientService {
         patient.setCellphone(patientRequest.getCellphone());
         patient.setBirthDate(patientRequest.getBirthDate());
         patient.setPassword(patientRequest.getPassword());
-        patient.setBloodType(patientRequest.getBloodType());
+        patient.setBloodType(BloodType.valueOf(patientRequest.getBloodType()));
 
         return patient;
     }

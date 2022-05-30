@@ -17,7 +17,7 @@
             "email":"roleori@outlook.com",
             "password":"1234",
             "cellphone":"997334293",
-            "birthDate":"13-08-2003"
+            "birthDate":"13-08-2003",
             "bloodType":"Oplus"
         },
         {
@@ -27,7 +27,7 @@
             "email":"luisa299@outlook.com",
             "password":"luisa2000",
             "cellphone":"992345924",
-            "birthDate":"29-01-2000"
+            "birthDate":"29-01-2000",
             "bloodType":"Bminus"
         },
         {
@@ -37,20 +37,20 @@
             "email":"rosana-qt@outlook.com",
             "password":"ros23",
             "cellphone":"999832428",
-            "birthDate":"10-05-1992"
+            "birthDate":"10-05-1992",
             "bloodType":"ABplus"
         }
     ]
     "incorrect-sign-in": [
         {
-            "dni":"",
+           "dni":"",
             "surName":"Lisa",
             "lastName":"Lopez Tello",
             "email":"lisalt@outlook.com",
             "password":"9876",
             "cellphone":"998832428",
-            "birthDate":"19-08-1997"
-            "bloodType":"ABplus"
+            "birthDate":"19-08-1997",
+            "bloodType":"ABplus" 
         }
     ]
 }

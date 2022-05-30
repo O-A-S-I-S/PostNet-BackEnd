@@ -26,5 +26,5 @@ public class MedicRequest {
     private Date birthDate;
     private String password;
     @NotBlank
-    private String specialty;
+    private String speciality;
 }
