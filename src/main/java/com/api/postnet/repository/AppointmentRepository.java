@@ -10,4 +10,6 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     @Query("SELECT o From Appointment o WHERE o.id=:appointmentId")
     Appointment findAppoimentByAppointmentId(@Param("appointmentId") Long appointmentId);
+    @Query("SELECT o From Appointment  o WHERE o.patient.dni=:patientDni")
+    List<Appointment> findAppointmentByPatientDni(@Param("patientDni") String patientDni);
 }

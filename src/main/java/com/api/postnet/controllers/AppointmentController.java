@@ -26,7 +26,12 @@ public class AppointmentController {
 
         return new ResponseEntity(converter.convertEntityToDto(appointment), HttpStatus.OK);
     }
+    @GetMapping("/patients/{patientDni}")
+    public ResponseEntity<AppointmentResponse>findAppointmentByPatientDni(@PathVariable String patientDni){
+        List<Appointment> appointments=appoimentService.getAppointmentByPatientDni(patientDni);
 
+        return new ResponseEntity(converter.convertEntityToDto(appointments),HttpStatus.OK);
+    }
     @DeleteMapping("/delete/{id}")
     public void deleteAppointmentById(@PathVariable Long id){
         appoimentService.deleteAppointment(id);

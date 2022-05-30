@@ -32,6 +32,10 @@ public class AppointmentService {
         return appointmentRepository.save(appointmentNew);
     }
     @Transactional
+    public List<Appointment> getAppointmentByPatientDni(String patientId){
+        return appointmentRepository.findAppointmentByPatientDni(patientId);
+    }
+    @Transactional
     public Appointment getAppointmentById(Long appointmentid){
         return appointmentRepository.findAppoimentByAppointmentId(appointmentid);
     }
