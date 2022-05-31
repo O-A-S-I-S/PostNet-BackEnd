@@ -19,5 +19,6 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
     @Query("select m from Medic m where m.dni= ?1")
     Medic findMedicByDni(String medicId);
 
+    List<Medic>findMedicsByDni(String dni);
     Medic findMedicByDniAndPassword(String dni, String password);
 }

@@ -2,12 +2,15 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.AppointmentRequest;
 import com.api.postnet.entities.Appointment;
+import com.api.postnet.entities.Patient;
+import com.api.postnet.exceptions.AccessBadRequestException;
 import com.api.postnet.repository.AppointmentRepository;
 import com.api.postnet.repository.MedicRepository;
 import com.api.postnet.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @Service
@@ -26,10 +29,27 @@ public class AppointmentService {
 
 
     @Transactional
-    public Appointment createAppointment(AppointmentRequest appointmentRequest)
-    {
-        Appointment appointmentNew=initAppoiment(appointmentRequest);
-        return appointmentRepository.save(appointmentNew);
+    public Appointment createAppointment(AppointmentRequest appointmentRequest) {
+
+        if(patientRepository.findPatientsByDni(appointmentRequest.getPatient_dni()).isEmpty()&&
+                medicRepository.findMedicsByDni(appointmentRequest.getMedic_dni()).isEmpty()){
+            throw new AccessBadRequestException("Ni medico ni paciente existen");
+        }
+        else if (patientRepository.findPatientsByDni(appointmentRequest.getPatient_dni()).isEmpty() )
+        {
+            throw new AccessBadRequestException("El paciente no existe");
+
+        }
+        else if(medicRepository.findMedicsByDni(appointmentRequest.getMedic_dni()).isEmpty()){
+            throw new AccessBadRequestException("El medico no existe");
+        }
+
+        else{
+            Appointment appointmentNew = initAppoiment(appointmentRequest);
+            return appointmentRepository.save(appointmentNew);
+
+        }
+
     }
     @Transactional
     public List<Appointment> getAppointmentByPatientDni(String patientId){
