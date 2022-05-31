@@ -13,14 +13,19 @@ public class Prescription{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "appointment_id")
+    private Appointment appointment;
 
     @ManyToMany
     @JoinTable(
             name = "prescription_medicine",
-            joinColumns = @JoinColumn(name = "medicine_id"),
-            inverseJoinColumns = @JoinColumn(name = "prescription_id")
+            joinColumns = @JoinColumn(name = "prescription_id"),
+            inverseJoinColumns = @JoinColumn(name = "medicine_id")
     )
     Set<Medicine> medicines;
+
+    @Column(nullable = false, length = 100)
+    private String description;
 }

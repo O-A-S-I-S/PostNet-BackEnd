@@ -1,10 +1,8 @@
 package com.api.postnet.util;
 
 import com.api.postnet.dto.*;
-import com.api.postnet.entities.Appointment;
-import com.api.postnet.entities.Medic;
-import com.api.postnet.entities.Patient;
-import com.api.postnet.entities.Speciality;
+import com.api.postnet.entities.*;
+import com.api.postnet.repository.MedicineRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +14,10 @@ public class EntityDtoConverter {
 
     //Dependency injection
     private ModelMapper modelMapper;
-
-    public EntityDtoConverter(ModelMapper modelMapper){
+    private MedicineRepository medicineRepository;
+    public EntityDtoConverter(ModelMapper modelMapper, MedicineRepository medicineRepository){
         this.modelMapper=modelMapper;
+        this.medicineRepository=medicineRepository;
     }
 
     public MedicResponse convertMedicToDto(Medic medic){
@@ -56,6 +55,26 @@ public class EntityDtoConverter {
     }
     public List<AppointmentResponse> convertEntityToDto(List<Appointment>appointments){
         return appointments.stream().map(appointment->convertEntityToDto(appointment)).collect(Collectors.toList());
+    }
+    public PrescriptionResponse convertEntityToDto(Prescription prescription){
+        return modelMapper.map(prescription,PrescriptionResponse.class);
+    }
+    public PrescriptionResponse convertPrescriptionToDto(Prescription prescription){
+        PrescriptionResponse temp = new PrescriptionResponse();
+        temp.setId(prescription.getId());
+        temp.setDescription(prescription.getDescription());
+        List<PrescriptionMedicinesResponse> temp2 = medicineRepository.getAllByPrescriptionAndId(prescription.getId())
+                .stream().map(medicine -> PrescriptionMedicinesResponse.builder()
+                        .nameMedicine(medicine.getName()).build()
+                ).collect(Collectors.toList());
+        temp.setPrescriptionMedicines(temp2);
+        return temp;
+        //return modelMapper.map(prescription, PrescriptionResponse.class);
+    }
+    public List<PrescriptionResponse> convertPrescriptionToDto(List<Prescription> prescriptions){
+        return prescriptions.stream()
+                .map(prescription -> convertPrescriptionToDto(prescription))
+                .collect(Collectors.toList());
     }
 
 }
