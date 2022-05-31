@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PrescriptionServiceConfig {
+public class PatientServiceConfig {
     @Bean
-    public ModelMapper modelMapperPrescription(){
-        return new ModelMapper();
-    }
+    public ModelMapper modelMapperPatient(){return new ModelMapper();}
 }
