@@ -2,6 +2,7 @@ package com.api.postnet.dto;
 
 import com.api.postnet.entities.Appointment;
 
+import com.api.postnet.entities.Medicine;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -13,5 +14,6 @@ public class PrescriptionRequest {
     private Long appointment_id;
     @NotNull
     private String description;
-
+    @NotNull
+    private List<LineItemDto> medicines;
 }

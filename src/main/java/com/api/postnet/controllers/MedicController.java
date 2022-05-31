@@ -1,15 +1,16 @@
 package com.api.postnet.controllers;
 
 import com.api.postnet.dto.MedicResponse;
+import com.api.postnet.dto.PrescriptionResponse;
 import com.api.postnet.entities.Medic;
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.services.MedicService;
 import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/medics")
@@ -25,5 +26,11 @@ public class MedicController {
         Medic medic=medicService.getMedicByDni(dni);
 
         return new ResponseEntity(converter.convertEntityToDto(medic), HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<List<PrescriptionResponse>> findPrescriptionByPatient(@RequestParam(value="patientId") Long patientId){
+        List<Prescription>prescriptions=medicService.findPatientPrescriptions(patientId);
+        return new ResponseEntity(converter.convertPrescriptionToDto(prescriptions),HttpStatus.OK);
+
     }
 }

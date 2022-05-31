@@ -14,15 +14,15 @@ public class Prescription{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "appointment_id")
     private Appointment appointment;
 
     @ManyToMany
     @JoinTable(
             name = "prescription_medicine",
-            joinColumns = @JoinColumn(name = "medicine_id"),
-            inverseJoinColumns = @JoinColumn(name = "prescription_id")
+            joinColumns = @JoinColumn(name = "prescription_id"),
+            inverseJoinColumns = @JoinColumn(name = "medicine_id")
     )
     Set<Medicine> medicines;
 
