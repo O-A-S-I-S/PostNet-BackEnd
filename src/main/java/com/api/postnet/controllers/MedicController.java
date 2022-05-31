@@ -63,9 +63,9 @@ public class MedicController {
         return new ResponseEntity(converter.convertMedicToDto(medicService.createMedic(medicRequest)), HttpStatus.CREATED);
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<List<PrescriptionResponse>> findPrescriptionByPatient(@RequestParam(value="patientId") Long patientId){
-        List<Prescription>prescriptions=medicService.findPatientPrescriptions(patientId);
+    @GetMapping("/find/{dni}")
+    public ResponseEntity<List<PrescriptionResponse>> findPrescriptionByPatient(@PathVariable String dni){
+        List<Prescription>prescriptions=medicService.findPatientPrescriptions(dni);
         return new ResponseEntity(converter.convertPrescriptionToDto(prescriptions),HttpStatus.OK);
 
     }

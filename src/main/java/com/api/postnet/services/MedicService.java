@@ -66,7 +66,7 @@ public class MedicService {
         return medic;
     }
 
-    public List<Prescription> findPatientPrescriptions(Long patientId){
-        return prescriptionRepository.findPrescriptionsByPatientId(patientId);
+    public List<Prescription> findPatientPrescriptions(String dni){
+        return prescriptionRepository.findPrescriptionsByPatientId(dni);
     }
 }

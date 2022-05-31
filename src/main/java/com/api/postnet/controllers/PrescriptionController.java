@@ -28,6 +28,7 @@ public class PrescriptionController {
         Prescription prescription=prescriptionService.getPrescriptionById(prescriptionId);
         return new ResponseEntity(converter.convertEntityToDto(prescription), HttpStatus.OK);
     }
+    
     @PostMapping
     public ResponseEntity<PrescriptionResponse> createPrescription(@RequestBody PrescriptionRequest request){
         Prescription prescription= prescriptionService.createPrescription(request);

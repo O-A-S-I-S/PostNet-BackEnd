@@ -2,6 +2,7 @@ package com.api.postnet.controllers;
 
 import com.api.postnet.dto.*;
 import com.api.postnet.entities.Patient;
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.services.PatientService;
 import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.http.HttpStatus;
@@ -56,5 +57,12 @@ public class PatientController {
         Patient patient=patientService.getPatientByDni(dni);
 
         return new ResponseEntity(converter.convertPatientToDto(patient), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAll/{dni}")
+    public ResponseEntity<List<PrescriptionResponse>> getAllPrescriptionsByDni(@PathVariable String dni)
+    {
+        List<Prescription> prescriptions = patientService.getAllPrescriptionsByDni(dni);
+        return new ResponseEntity(converter.convertPrescriptionToDto(prescriptions), HttpStatus.OK);
     }
 }
