@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicResponse {
-    private Long id;
+
     private String dni;
     private String surName;
     private String lastName;
@@ -18,7 +18,7 @@ public class MedicResponse {
     private String cellphone;
     private String email;
     private Date birthDate;
-    private String password;
+
     private SpecialityResponse specialty;
 
 }
