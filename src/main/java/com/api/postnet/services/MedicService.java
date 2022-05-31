@@ -3,6 +3,7 @@ package com.api.postnet.services;
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.entities.Prescription;
+import com.api.postnet.exceptions.MedicDniDuplicatedException;
 import com.api.postnet.repository.MedicRepository;
 import com.api.postnet.repository.PrescriptionRepository;
 import com.api.postnet.repository.SpecialityRepository;
@@ -48,8 +49,12 @@ public class MedicService {
 
     @Transactional
     public Medic createMedic(MedicRequest medicRequest) {
+       if(medicRepository.findMedicByDni(medicRequest.getDni())!=null)
+        throw new MedicDniDuplicatedException("Ya existe un medico con el mismo DNI");
+       else {
         Medic medicNew = initMedic(medicRequest);
         return medicRepository.save(medicNew);
+       }
     }
 
     private Medic initMedic(MedicRequest medicRequest) {
