@@ -41,7 +41,7 @@ public class PrescriptionService {
         List<Medicine> medicines=new ArrayList<>();
 
         prescriptionObj.setId(UUID.randomUUID().getMostSignificantBits());
-        prescriptionObj.setAppointment(this.appointmentRepository.findAppointmentByAppointmentId(prescriptionRequest.getAppointment_id()));
+        prescriptionObj.setAppointment(this.appointmentRepository.findAppointmentById(prescriptionRequest.getAppointment_id()));
 
         prescriptionObj.setDescription(prescriptionRequest.getDescription());
 
