@@ -37,7 +37,7 @@ public class AppointmentService {
     }
     @Transactional
     public Appointment getAppointmentById(Long appointmentid){
-        return appointmentRepository.findAppoimentByAppointmentId(appointmentid);
+        return appointmentRepository.findAppointmentByAppointmentId(appointmentid);
     }
     @Transactional
     public void deleteAppointment(Long id){

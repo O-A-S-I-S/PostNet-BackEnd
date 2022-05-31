@@ -2,7 +2,9 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.repository.MedicRepository;
+import com.api.postnet.repository.PrescriptionRepository;
 import com.api.postnet.repository.SpecialityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +17,12 @@ public class MedicService {
 
     private MedicRepository medicRepository;
     private SpecialityRepository specialityRepository;
-    public MedicService(MedicRepository medicRepository,SpecialityRepository specialityRepository) {
+    private PrescriptionRepository prescriptionRepository;
+
+    public MedicService(MedicRepository medicRepository,SpecialityRepository specialityRepository, PrescriptionRepository prescriptionRepository) {
         this.medicRepository = medicRepository;
         this.specialityRepository=specialityRepository;
+        this.prescriptionRepository=prescriptionRepository;
     }
 
     @Transactional(readOnly = true)
@@ -59,5 +64,9 @@ public class MedicService {
         medic.setSpecialty(this.specialityRepository.findSpecialityByName(medicRequest.getSpeciality()));
         medic.setPassword(medicRequest.getPassword());
         return medic;
+    }
+
+    public List<Prescription> findPatientPrescriptions(Long patientId){
+        return prescriptionRepository.findPrescriptionsByPatientId(patientId);
     }
 }
