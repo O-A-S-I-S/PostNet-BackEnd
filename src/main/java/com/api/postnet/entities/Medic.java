@@ -20,7 +20,7 @@ public class Medic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    @Column(name="dni",nullable = false,length = 8)
+    @Column(name="dni",nullable = false,length = 8, unique = true)
     private String dni;
     @Column(name="surname",nullable = false,length = 20)
     private String surname;
@@ -38,12 +38,12 @@ public class Medic {
     private String password;
 
     @OneToOne
-    @JoinColumn(name="speciality_id",nullable = false)
-    private Speciality speciality;
+    @JoinColumn(name="specialty_id",nullable = false)
+    private Speciality specialty;
 
     @ManyToMany
     @JoinTable(
-            name = "medic_patient_preference",
+            name = "patient_medic_preference",
             joinColumns = @JoinColumn(name = "medic_id"),
             inverseJoinColumns = @JoinColumn(name = "patient_id")
     )

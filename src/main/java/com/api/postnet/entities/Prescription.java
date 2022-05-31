@@ -13,10 +13,8 @@ public class Prescription{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
-    private Appoiment appoiment;
+    @Column(nullable = false)
+    private String description;
 
     @ManyToMany
     @JoinTable(
@@ -25,7 +23,4 @@ public class Prescription{
             inverseJoinColumns = @JoinColumn(name = "prescription_id")
     )
     Set<Medicine> medicines;
-
-    @Column(nullable = false, length = 100)
-    private String description;
 }
