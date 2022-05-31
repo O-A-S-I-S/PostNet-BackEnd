@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 // URI -> set
 @RequestMapping("/medics")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MedicController {
 
     private MedicService medicService;
