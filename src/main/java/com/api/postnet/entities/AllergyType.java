@@ -20,6 +20,6 @@ public class AllergyType {
     @JoinColumn(name = "allergen_id")
     private Allergen allergen;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "allergyTypes")
+    @ManyToMany(mappedBy = "allergyTypes")
     Set<Patient> patients;
 }

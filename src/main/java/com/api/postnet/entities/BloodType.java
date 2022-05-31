@@ -5,12 +5,12 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "allergens")
+@Table(name = "blood_types")
 @Data
-public class Allergen {
+public class BloodType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 30)
-    private String allergen;
+    @Column(name = "blood_type", nullable = false, length = 3)
+    private String bloodType;
 }
