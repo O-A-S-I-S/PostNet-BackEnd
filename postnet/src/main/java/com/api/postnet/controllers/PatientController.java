@@ -22,7 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/patients")
-@CrossOrigin(origins = "http://localhost:4200/")
+//@CrossOrigin(origins = "http://localhost:4200/")
 public class PatientController {
     private PatientService patientService;
     private EntityDtoConverter converter;
