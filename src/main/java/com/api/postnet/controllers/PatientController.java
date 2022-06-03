@@ -1,10 +1,8 @@
 package com.api.postnet.controllers;
 
-import com.api.postnet.dto.LogInRequest;
-import com.api.postnet.dto.LogInResponse;
-import com.api.postnet.dto.PatientRequest;
-import com.api.postnet.dto.PatientResponse;
+import com.api.postnet.dto.*;
 import com.api.postnet.entities.Patient;
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.services.PatientService;
 import com.api.postnet.util.EntityDtoConverter;
 import org.springframework.data.domain.Page;
@@ -80,15 +78,22 @@ public class PatientController {
         Patient patient = patientService.createPatient(patientRequest);
         return new ResponseEntity<>(converter.convertPatientToDto(patient), HttpStatus.CREATED);
     }
-
-    @PostMapping("/log_in")
-    public ResponseEntity<LogInResponse> getPatientByDniAndPassword(@Valid @RequestBody LogInRequest logInRequest) {
-        return new ResponseEntity(converter.convertPatientToLogInDto(patientService.findPatientByDniAndPassword(logInRequest.getDni(), logInRequest.getPassword())), HttpStatus.OK);
-    }
-
     @DeleteMapping("/{dni}")
     public ResponseEntity<PatientResponse> deletePatient(@PathVariable String dni){
         patientService.deletePatient(dni);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/{dni}")
+    public ResponseEntity<MedicResponse> findPatientByDni(@PathVariable String dni){
+        Patient patient=patientService.getPatientByDni(dni);
+
+        return new ResponseEntity(converter.convertPatientToDto(patient), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAll/{dni}")
+    public ResponseEntity<List<PrescriptionResponse>> getAllPrescriptionsByDni(@PathVariable String dni)
+    {
+        List<Prescription> prescriptions = patientService.getAllPrescriptionsByDni(dni);
+        return new ResponseEntity(converter.convertPrescriptionToDto(prescriptions), HttpStatus.OK);
     }
 }
