@@ -19,6 +19,5 @@ public class MedicResponse {
     private String email;
     private Date birthDate;
     private String password;
-    private SpecialityResponse specialty;
-
+    private String speciality;
 }

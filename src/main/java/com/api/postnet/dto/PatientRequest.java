@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
@@ -15,18 +16,21 @@ import java.util.Date;
 @NoArgsConstructor
 public class PatientRequest {
     @NotBlank(message = "DNI es obligatorio, revise su ingreso")
+    @Length(min = 8, message = "Incorrecto DNI")
     private String dni;
     @NotBlank(message = "El nombre es obligatorio, revise su ingreso")
-    private String surName;
+    private String surname;
     @NotBlank(message = "Es obligatorio ingresar los apellidos, revise su ingreso")
     private String lastName;
     @NotBlank(message = "Ingrese un email válido")
     private String email;
     private String telephone;
     private String cellphone;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDate;
     @NotBlank(message = "Ingrese su contraseña")
     private String password;
-    private BloodType bloodType;
+    @NotBlank(message = "Tipos de sangre válidos: Oplus,Ominus,Aplus,Aminus,Bplus,Bminus,ABplus,ABminus")
+    private String bloodType;
 }

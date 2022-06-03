@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 // URI -> set
 @RequestMapping("/medics")
+//@CrossOrigin(origins = "http://localhost:4200/")
 public class MedicController {
 
     private MedicService medicService;
@@ -35,10 +36,10 @@ public class MedicController {
         return new ResponseEntity<>(medics, HttpStatus.OK);
     }
 
-    @GetMapping("/specialty/{specialty}")
-    public ResponseEntity<List<MedicResponse>> findMedicsBySpecialty(@PathVariable String specialty){
+    @GetMapping("/speciality/{speciality}")
+    public ResponseEntity<List<MedicResponse>> findMedicsByspeciality(@PathVariable String speciality){
 
-        return new ResponseEntity<>(converter.convertMedicToDto(medicService.getMedicsBySpecialty(specialty)), HttpStatus.OK);
+        return new ResponseEntity<>(converter.convertMedicToDto(medicService.getMedicsByspeciality(speciality)), HttpStatus.OK);
     }
 
     //URI are stackable

@@ -12,9 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientResponse {
-    private Long id;
     private String dni;
-    private String surName;
+    private String surname;
     private String lastName;
     private String telephone;
     private String cellphone;

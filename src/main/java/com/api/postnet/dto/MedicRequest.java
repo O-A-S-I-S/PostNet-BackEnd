@@ -23,7 +23,6 @@ public class MedicRequest {
     private String email;
     private String telephone;
     private String cellphone;
-
     private Date birthDate;
     private String password;
     @NotBlank

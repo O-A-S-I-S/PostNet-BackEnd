@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogInResponse {
+    private Long id;
     private String dni;
-    private String surName;
+    private String surname;
     private String lastName;
     private String email;
     private String password;

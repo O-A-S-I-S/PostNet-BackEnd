@@ -4,6 +4,7 @@ import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.entities.Prescription;
 import com.api.postnet.exceptions.MedicDniDuplicatedException;
+import com.api.postnet.exceptions.SearchBadRequestException;
 import com.api.postnet.repository.MedicRepository;
 import com.api.postnet.repository.PrescriptionRepository;
 import com.api.postnet.repository.SpecialityRepository;
@@ -32,8 +33,10 @@ public class MedicService {
     }
 
     @Transactional(readOnly = true)
-    public List<Medic> getMedicsBySpecialty(String specialty) {
-        return medicRepository.getMedicsBySpecialty(specialty);
+    public List<Medic> getMedicsByspeciality(String speciality) {
+        List<Medic> medics = medicRepository.getMedicsByspeciality(speciality);
+        if(medics.isEmpty()) throw new SearchBadRequestException("La especialidad ingresada no existe");
+        else return medics;
     }
 
     //incorporate rollback in case of failure
