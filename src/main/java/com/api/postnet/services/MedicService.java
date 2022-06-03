@@ -1,6 +1,5 @@
 package com.api.postnet.services;
 
-
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
 import com.api.postnet.exceptions.SearchBadRequestException;
@@ -60,6 +59,5 @@ public class MedicService {
         medic.setBirthDate(medicRequest.getBirthDate());
 
         return medic;
-
     }
 }

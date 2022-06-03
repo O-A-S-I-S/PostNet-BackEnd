@@ -1,6 +1,5 @@
 package com.api.postnet.dto;
 
-
 import com.api.postnet.util.BloodType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -19,7 +18,7 @@ public class PatientRequest {
     @Length(min = 8, message = "Incorrecto DNI")
     private String dni;
     @NotBlank(message = "El nombre es obligatorio, revise su ingreso")
-    private String surName;
+    private String surname;
     @NotBlank(message = "Es obligatorio ingresar los apellidos, revise su ingreso")
     private String lastName;
     @NotBlank(message = "Ingrese un email válido")
@@ -33,5 +32,4 @@ public class PatientRequest {
     private String password;
     @NotBlank(message = "Tipos de sangre válidos: Oplus,Ominus,Aplus,Aminus,Bplus,Bminus,ABplus,ABminus")
     private String bloodType;
-
 }

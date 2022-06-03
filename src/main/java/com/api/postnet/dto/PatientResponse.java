@@ -1,6 +1,5 @@
 package com.api.postnet.dto;
 
-
 import com.api.postnet.util.BloodType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientResponse {
-    private Long id;
     private String dni;
-    private String surName;
+    private String surname;
     private String lastName;
     private String telephone;
     private String cellphone;

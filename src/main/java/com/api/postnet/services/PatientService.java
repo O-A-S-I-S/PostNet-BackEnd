@@ -5,30 +5,33 @@ import com.api.postnet.entities.Patient;
 import com.api.postnet.exceptions.AccessBadRequestException;
 import com.api.postnet.repository.PatientRepository;
 import com.api.postnet.util.BloodType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
 
-
 @Service
 public class PatientService {
     private PatientRepository patientRepository;
-
 
     public PatientService(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
     @Transactional(readOnly = true)
-    public List<Patient> getAllPatients() {
-        return patientRepository.getAllPatients();
+    public Page<Patient> getAllPatients(Pageable pageable) {
+        return patientRepository.getAllPatients(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<Patient> getPatientsByBloodType(String bloodType) {
-        return patientRepository.getPatientsByBloodType(bloodType);
+    public Page<Patient> getPatientsByNameContaining(String name, Pageable pageable){ return patientRepository.getPatientsBySurnameContainingOrLastNameContaining(name, name, pageable);}
+
+    @Transactional(readOnly = true)
+    public Page<Patient> getPatientsByBloodType(String bloodType, Pageable pageable) {
+        return patientRepository.getPatientsByBloodType(bloodType, pageable);
     }
 
     //incorporate rollback in case of failure
@@ -59,7 +62,7 @@ public class PatientService {
     private Patient initPatient(PatientRequest patientRequest) {
         Patient patient = new Patient();
         patient.setDni(patientRequest.getDni());
-        patient.setSurname(patientRequest.getSurName());
+        patient.setSurname(patientRequest.getSurname());
         patient.setLastName(patientRequest.getLastName());
         patient.setEmail(patientRequest.getEmail());
         patient.setTelephone(patientRequest.getTelephone());
@@ -78,6 +81,5 @@ public class PatientService {
         } catch (Exception e){
             throw new AccessBadRequestException("DNI incorrecto o el paciente no existe");
         }
-
     }
 }
