@@ -1,31 +1,63 @@
 package com.api.postnet.services;
 
+import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
-import com.api.postnet.entities.Prescription;
+import com.api.postnet.exceptions.SearchBadRequestException;
 import com.api.postnet.repository.MedicRepository;
-import com.api.postnet.repository.PrescriptionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
+//Allows framework to take control of life cycle
 @Service
 public class MedicService {
+
     private MedicRepository medicRepository;
-    private PrescriptionRepository prescriptionRepository;
 
-    public MedicService(MedicRepository medicRepository,PrescriptionRepository prescriptionRepository){
-        this.medicRepository=medicRepository;
-        this.prescriptionRepository=prescriptionRepository;
+    public MedicService(MedicRepository medicRepository) {
+        this.medicRepository = medicRepository;
     }
+
+    @Transactional(readOnly = true)
+    public List<Medic> getAllMedics() {
+        return medicRepository.getAllMedics();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Medic> getMedicsByspeciality(String speciality) {
+        List<Medic> medics = medicRepository.getMedicsByspeciality(speciality);
+        if(medics.isEmpty()) throw new SearchBadRequestException("La especialidad ingresada no existe");
+        else return medics;
+    }
+
+    //incorporate rollback in case of failure
+    @Transactional(readOnly = true)
+    public Medic getMedicByDni(String dni) {
+        return medicRepository.findMedicByDni(dni);
+    }
+
+    @Transactional(readOnly = true)
+    public Medic findMedicByDniAndPassword(String dni, String password) {
+        return medicRepository.findMedicByDniAndPassword(dni, password);
+    }
+
     @Transactional
-    public Medic getMedicByDni(String medicDni){
-        return medicRepository.findMedicByDni(medicDni);
+    public Medic createMedic(MedicRequest medicRequest) {
+        Medic medicNew = initMedic(medicRequest);
+        return medicRepository.save(medicNew);
     }
 
-    public List<Prescription> findPatientPrescriptions(Long patientId){
-        return prescriptionRepository.findPrescriptionsByPatientId(patientId);
+    private Medic initMedic(MedicRequest medicRequest) {
+        Medic medic = new Medic();
+        medic.setDni(medicRequest.getDni());
+        medic.setSurname(medicRequest.getSurName());
+        medic.setLastName(medicRequest.getLastName());
+        medic.setEmail(medicRequest.getEmail());
+        medic.setTelephone(medicRequest.getTelephone());
+        medic.setCellphone(medicRequest.getCellphone());
+        medic.setBirthDate(medicRequest.getBirthDate());
+
+        return medic;
     }
-
-
 }

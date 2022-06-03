@@ -1,5 +1,6 @@
 package com.api.postnet.entities;
 
+import com.api.postnet.util.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,16 +29,21 @@ public class Appointment {
     private Time endTime;
     @Column(name="cost")
     private Integer cost;
+    @Column(name = "payment_method")
+    @Enumerated(value = EnumType.STRING)
+    private PaymentMethod paymentMethod;
 
     @ManyToOne
     @JoinColumn(name="medic_id",nullable = false)
-    private Medic medics;
-    @ManyToOne
-    @JoinColumn(name = "payment_method_id",nullable = false)
-    private Payment_method paymentMethod;
+    private Medic medic;
+
     @ManyToOne
     @JoinColumn(name = "patient_id",nullable = false)
     private Patient patient;
+
+    @OneToOne
+    @JoinColumn(name = "prescription_id", referencedColumnName = "id")
+    private Prescription prescription;
 
 }
 
