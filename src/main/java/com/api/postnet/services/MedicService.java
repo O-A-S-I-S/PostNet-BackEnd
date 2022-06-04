@@ -2,12 +2,8 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.MedicRequest;
 import com.api.postnet.entities.Medic;
-import com.api.postnet.entities.Prescription;
-import com.api.postnet.exceptions.MedicDniDuplicatedException;
 import com.api.postnet.exceptions.SearchBadRequestException;
 import com.api.postnet.repository.MedicRepository;
-import com.api.postnet.repository.PrescriptionRepository;
-import com.api.postnet.repository.SpecialityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +14,9 @@ import java.util.List;
 public class MedicService {
 
     private MedicRepository medicRepository;
-    private SpecialityRepository specialityRepository;
-    private PrescriptionRepository prescriptionRepository;
 
-    public MedicService(MedicRepository medicRepository,SpecialityRepository specialityRepository, PrescriptionRepository prescriptionRepository) {
+    public MedicService(MedicRepository medicRepository) {
         this.medicRepository = medicRepository;
-        this.specialityRepository=specialityRepository;
-        this.prescriptionRepository=prescriptionRepository;
     }
 
     @Transactional(readOnly = true)
@@ -52,12 +44,8 @@ public class MedicService {
 
     @Transactional
     public Medic createMedic(MedicRequest medicRequest) {
-       if(medicRepository.findMedicByDni(medicRequest.getDni())!=null)
-        throw new MedicDniDuplicatedException("Ya existe un medico con el mismo DNI");
-       else {
         Medic medicNew = initMedic(medicRequest);
         return medicRepository.save(medicNew);
-       }
     }
 
     private Medic initMedic(MedicRequest medicRequest) {
@@ -69,12 +57,7 @@ public class MedicService {
         medic.setTelephone(medicRequest.getTelephone());
         medic.setCellphone(medicRequest.getCellphone());
         medic.setBirthDate(medicRequest.getBirthDate());
-        medic.setSpecialty(this.specialityRepository.findSpecialityByName(medicRequest.getSpeciality()));
-        medic.setPassword(medicRequest.getPassword());
-        return medic;
-    }
 
-    public List<Prescription> findPatientPrescriptions(String dni){
-        return prescriptionRepository.findPrescriptionsByPatientId(dni);
+        return medic;
     }
 }

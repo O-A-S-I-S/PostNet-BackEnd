@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -28,7 +27,7 @@ public class PatientRequest {
     private String cellphone;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @JsonFormat(pattern="dd-MM-yyyy")
-    private Date birthDate;
+    private LocalDate birthDate;
     @NotBlank(message = "Ingrese su contraseña")
     private String password;
     @NotBlank(message = "Tipos de sangre válidos: Oplus,Ominus,Aplus,Aminus,Bplus,Bminus,ABplus,ABminus")
