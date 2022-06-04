@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,7 @@ public class Patient {
     @Column(name = "cellphone", length = 9)
     private String cellphone;
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private Date birthDate;
     @Column(name = "password", nullable = false, length = 30)
     private String password;
     @Column(name = "blood_type", nullable = false)
