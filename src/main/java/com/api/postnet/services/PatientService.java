@@ -2,8 +2,10 @@ package com.api.postnet.services;
 
 import com.api.postnet.dto.PatientRequest;
 import com.api.postnet.entities.Patient;
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.exceptions.AccessBadRequestException;
 import com.api.postnet.repository.PatientRepository;
+import com.api.postnet.repository.PrescriptionRepository;
 import com.api.postnet.util.BloodType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +18,11 @@ import java.util.List;
 @Service
 public class PatientService {
     private PatientRepository patientRepository;
+    private PrescriptionRepository prescriptionRepository;
 
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, PrescriptionRepository prescriptionRepository) {
         this.patientRepository = patientRepository;
+        this.prescriptionRepository = prescriptionRepository;
     }
 
     @Transactional(readOnly = true)
@@ -81,5 +85,10 @@ public class PatientService {
         } catch (Exception e){
             throw new AccessBadRequestException("DNI incorrecto o el paciente no existe");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public List<Prescription> getAllPrescriptionsByDni(String dni) {
+        return prescriptionRepository.findPrescriptionsByPatientId(dni);
     }
 }
