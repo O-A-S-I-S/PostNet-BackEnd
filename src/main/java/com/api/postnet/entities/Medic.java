@@ -26,7 +26,7 @@ public class Medic {
     private String surname;
     @Column(name ="last_name",nullable = false,length = 20)
     private String lastName;
-    @Column(name ="email",nullable = false,length = 30)
+    @Column(name ="email",nullable = false,length = 30, unique = true)
     private String email;
     @Column(name ="telephone",nullable = false,length = 7)
     private String telephone;
