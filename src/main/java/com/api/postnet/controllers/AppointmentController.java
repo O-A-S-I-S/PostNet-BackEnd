@@ -45,7 +45,7 @@ public class AppointmentController {
         Appointment appointment=appoimentService.createAppointment(request);
         return new ResponseEntity<>(converter.convertEntityToDto(appointment),HttpStatus.CREATED);
     }
-    @PutMapping("/{id}/{prescription_id}")
+    @PatchMapping("/{id}/{prescription_id}")
     public ResponseEntity<AppointmentResponse>updatePrescription(@PathVariable Long id,@PathVariable Long prescription_id){
         Appointment appointment= appoimentService.updatePrescription(id,prescription_id);
         return new ResponseEntity(appointmentRepository.save(appointment),HttpStatus.OK);
