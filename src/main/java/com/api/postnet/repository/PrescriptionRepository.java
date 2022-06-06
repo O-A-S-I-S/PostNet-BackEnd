@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PrescriptionRepository extends JpaRepository<Prescription,Long> {
 
-    Prescription findPrescriptionById(Integer id);
+    Prescription findPrescriptionById(Long id);
 
     @Query(value="SELECT * FROM prescriptions p WHERE p.appointment_id=?1",nativeQuery = true)
     Prescription findPrescriptionByIdNativeSQL(Long id);

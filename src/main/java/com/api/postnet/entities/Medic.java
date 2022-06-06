@@ -39,7 +39,7 @@ public class Medic {
 
     @OneToOne
     @JoinColumn(name="speciality_id",nullable = false)
-    private Speciality speciality;
+    private Speciality specialty;
 
     @ManyToMany
     @JoinTable(

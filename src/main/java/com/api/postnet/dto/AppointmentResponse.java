@@ -1,5 +1,6 @@
 package com.api.postnet.dto;
 
+import com.api.postnet.entities.Prescription;
 import com.api.postnet.util.PaymentMethod;
 
 import java.sql.Time;
@@ -14,6 +15,16 @@ public class AppointmentResponse {
     private MedicResponse medics;
     private PatientResponse patient;
     private PaymentMethod paymentMethod;
+    private PrescriptionResponse prescription;
+
+    public PrescriptionResponse getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(PrescriptionResponse prescription) {
+        this.prescription = prescription;
+    }
+
 
     public Long getId() {
         return id;

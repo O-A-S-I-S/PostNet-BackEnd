@@ -14,9 +14,6 @@ public class Prescription{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "appointment_id")
-    private Appointment appointment;
 
     @ManyToMany
     @JoinTable(

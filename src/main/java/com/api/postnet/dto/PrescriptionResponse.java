@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class PrescriptionResponse {
     private Long id;
-    private AppointmentResponse appointment;
     private String description;
     private List<PrescriptionMedicinesResponse> prescriptionMedicines;
 }

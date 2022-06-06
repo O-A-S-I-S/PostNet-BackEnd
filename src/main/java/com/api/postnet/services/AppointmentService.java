@@ -5,6 +5,7 @@ import com.api.postnet.entities.Appointment;
 import com.api.postnet.repository.AppointmentRepository;
 import com.api.postnet.repository.MedicRepository;
 import com.api.postnet.repository.PatientRepository;
+import com.api.postnet.repository.PrescriptionRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,17 +14,23 @@ import java.util.List;
 @Service
 public class AppointmentService {
     private AppointmentRepository appointmentRepository;
-
+    private PrescriptionRepository prescriptionRepository;
     private MedicRepository medicRepository;
     private PatientRepository patientRepository;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, MedicRepository medicRepository, PatientRepository patientRepository){
+    public AppointmentService(AppointmentRepository appointmentRepository, MedicRepository medicRepository, PatientRepository patientRepository,PrescriptionRepository prescriptionRepository){
         this.appointmentRepository=appointmentRepository;
         this.medicRepository=medicRepository;
-
+        this.prescriptionRepository=prescriptionRepository;
         this.patientRepository=patientRepository;
     }
 
+    @Transactional
+    public Appointment updatePrescription(Long id,Long prescription_id){
+        Appointment appointment= appointmentRepository.findAppointmentById(id);
+        appointment.setPrescription(prescriptionRepository.findPrescriptionById(prescription_id));
+        return appointment;
+    }
 
     @Transactional
     public Appointment createAppointment(AppointmentRequest appointmentRequest)

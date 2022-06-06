@@ -1,6 +1,8 @@
 package com.api.postnet.services;
 
+import com.api.postnet.dto.AppointmentRequest;
 import com.api.postnet.dto.PrescriptionRequest;
+import com.api.postnet.entities.Appointment;
 import com.api.postnet.entities.Medicine;
 import com.api.postnet.entities.Prescription;
 import com.api.postnet.exceptions.MedicineNotFoundException;
@@ -34,6 +36,7 @@ public class PrescriptionService {
     public Prescription createPrescription(PrescriptionRequest prescriptionRequest){
         PrescriptionValidator.validatePrescription(prescriptionRequest);
         Prescription prescriptionNew=initPrescription(prescriptionRequest);
+
         return prescriptionRepository.save(prescriptionNew);
     }
     private Prescription initPrescription(PrescriptionRequest prescriptionRequest){
@@ -41,12 +44,12 @@ public class PrescriptionService {
         List<Medicine> medicines=new ArrayList<>();
 
         prescriptionObj.setId(UUID.randomUUID().getMostSignificantBits());
-        prescriptionObj.setAppointment(this.appointmentRepository.findAppointmentById(prescriptionRequest.getAppointment_id()));
-
         prescriptionObj.setDescription(prescriptionRequest.getDescription());
+
 
         return prescriptionObj;
     }
+
 
 
 }

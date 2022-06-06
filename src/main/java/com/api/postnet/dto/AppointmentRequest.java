@@ -15,6 +15,18 @@ public class AppointmentRequest {
     private Time start_time;
     private Time end_time;
     private PaymentMethod paymentMethod;
+    private Long prescription_id;
+
+
+    public Long getPrescription_id() {
+        return prescription_id;
+    }
+
+    public void setPrescription_id(Long prescription_id) {
+        this.prescription_id = prescription_id;
+    }
+
+
 
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
